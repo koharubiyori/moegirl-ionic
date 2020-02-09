@@ -1,0 +1,7 @@
+{
+  "name": "moegirl-ionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
