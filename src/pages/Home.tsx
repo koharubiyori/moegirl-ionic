@@ -19,7 +19,8 @@ import {
 } from '@ionic/react'
 import { book, build, colorFill, grid } from 'ionicons/icons'
 import React from 'react'
-import '~/pages/Home.css'
+// eslint-disable-next-line import/no-absolute-path
+import 'pages/Home.css'
 
 const HomePage: React.FC = () => {
   return (

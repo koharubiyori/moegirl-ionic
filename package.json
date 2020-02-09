@@ -70,17 +70,17 @@
     "ts-pnp": "1.1.5",
     "typescript": "3.7.4",
     "url-loader": "2.3.0",
-    "webpack": "4.41.2",
-    "webpack-dev-server": "3.9.0",
+    "webpack": "4.41.5",
+    "webpack-dev-server": "3.10.1",
     "webpack-manifest-plugin": "2.2.0",
     "workbox-webpack-plugin": "4.3.1"
   },
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js",
     "android": "yarn build && ionic capacitor copy android && cd android && ./gradlew assembleRelease && cd ../",
-    "push": "adb push android/app/build/outputs/apk/release/app-release.apk sdcard"
+    "start-android": "ionic cap run android -l --external",
+    "push-android": "adb push android/app/build/outputs/apk/release/app-release.apk sdcard"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -105,7 +105,8 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "react-scripts": "^3.3.1"
   },
   "description": "An Ionic project",
   "jest": {
