@@ -1,6 +1,6 @@
-import { IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonList, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import { americanFootball, basketball, beer, bluetooth, boat, build, flask, football, paperPlane, wifi } from 'ionicons/icons';
-import React from 'react';
+import { IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonList, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react'
+import { americanFootball, basketball, beer, bluetooth, boat, build, flask, football, paperPlane, wifi } from 'ionicons/icons'
+import React from 'react'
 
 const ListPage: React.FC = () => {
   return (
@@ -18,8 +18,8 @@ const ListPage: React.FC = () => {
         <ListItems />
       </IonContent>
     </IonPage>
-  );
-};
+  )
+}
 
 const ListItems = () => {
   const icons = [
@@ -33,7 +33,7 @@ const ListItems = () => {
     boat,
     bluetooth,
     build
-  ];
+  ]
 
   const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(x => {
     return (
@@ -44,10 +44,10 @@ const ListItems = () => {
           This is item # {x}
         </div>
       </IonItem>
-    );
-  });
+    )
+  })
 
-  return <IonList>{items}</IonList>;
-};
+  return <IonList>{items}</IonList>
+}
 
-export default ListPage;
+export default ListPage

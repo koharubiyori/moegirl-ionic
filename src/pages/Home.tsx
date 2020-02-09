@@ -16,10 +16,10 @@ import {
   IonPage,
   IonTitle,
   IonToolbar
-  } from '@ionic/react';
-import { book, build, colorFill, grid } from 'ionicons/icons';
-import React from 'react';
-import './Home.css';
+} from '@ionic/react'
+import { book, build, colorFill, grid } from 'ionicons/icons'
+import React from 'react'
+import '~/pages/Home.css'
 
 const HomePage: React.FC = () => {
   return (
@@ -41,7 +41,7 @@ const HomePage: React.FC = () => {
           </IonCardHeader>
           <IonCardContent>
             <p>
-              Now that your app has been created, you'll want to start building out features and
+              Now that your app has been created, you&apos;ll want to start building out features and
               components. Check out some of the resources below for next steps.
             </p>
           </IonCardContent>
@@ -70,7 +70,7 @@ const HomePage: React.FC = () => {
         </IonList>
       </IonContent>
     </IonPage>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage
