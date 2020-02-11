@@ -15,12 +15,69 @@ import {
   IonMenuButton,
   IonPage,
   IonTitle,
-  IonToolbar
+  IonToolbar,
+  isPlatform
 } from '@ionic/react'
 import { book, build, colorFill, grid } from 'ionicons/icons'
 import React from 'react'
-// eslint-disable-next-line import/no-absolute-path
 import 'pages/Home.css'
+import { HTTP } from '@ionic-native/http'
+import request from 'utils/request'
+
+request({
+  params: {
+    format: 'json',
+    action: 'query',
+    meta: 'tokens',
+    type: 'login'
+  }
+})
+  .then(data => {
+    console.log(data)
+
+    request({
+      method: 'post',
+      params: {
+        format: 'json',
+        action: 'clientlogin',
+        loginmessageformat: 'html',
+        loginreturnurl: 'https://zh.moegirl.org/Mainpage',
+        username: '東東君', 
+        password: 'zhang18640311631',
+        rememberMe: true,
+        logintoken: data.data.query.tokens.logintoken 
+      }
+    })
+  })
+  .catch(console.log)
+
+// console.log(isPlatform('mobileweb'))
+// Promise.race([
+//   HTTP.post('https://zh.moegirl.org/api.php', {
+//     format: 'json',
+//     action: 'query',
+//     meta: 'tokens',
+//     type: 'login'
+//   }, {
+//     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
+//   }),
+//   new Promise(resolve => setTimeout(resolve, 20000, 'timeout'))
+// ])
+//   .then((data: any) => {
+//     HTTP.post('https://zh.moegirl.org/api.php', {
+//       format: 'json',
+//       action: 'clientlogin',
+//       loginmessageformat: 'html',
+//       loginreturnurl: 'https://zh.moegirl.org/Mainpage',
+//       username: '東東君', 
+//       password: 'zhang18640311631',
+//       rememberMe: true,
+//       logintoken: JSON.parse(data.data).query.tokens.logintoken 
+//     }, {
+//       'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
+//     })
+//       .then(console.log)
+//   })
 
 const HomePage: React.FC = () => {
   return (
