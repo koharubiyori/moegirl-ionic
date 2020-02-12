@@ -44,6 +44,7 @@ module.exports = {
       'no-useless-escape': 0,   // 特殊字符需要转义，有误报
       'no-tabs': 0,  // 禁止使用tabs,
       'no-multiple-empty-lines': 0,  // 禁止多个空行
+      'one-var': 0, // 禁止变量申明时用逗号一次申明多个
   
       'react/display-name': 0,   // 必须设置组件的displayName
       'react/prop-types': 0   // 检查属性是否在props上存在，有误报的情况

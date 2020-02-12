@@ -37,7 +37,11 @@ if (isPlatform('hybrid')) {
       ...options.headers, 
     }
 
-    return HTTP[method](url, params, requestHeaders)
+    return new Promise((resolve, reject) => {
+      HTTP[method](url, params, requestHeaders)
+        .then(data => resolve({ ...data, data: JSON.parse(data.data) }))
+        .catch(reject)
+    })
   }
 } else {
   requestor = axios.create({ 
