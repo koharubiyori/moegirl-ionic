@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useRef, PropsWithChildren, CSSProperties } from 'react'
-import { makeStyles } from '@material-ui/styles'
-import { IonToolbar, IonButtons, IonBackButton, IonTitle, IonIcon, IonButton, IonRippleEffect, IonPopover } from '@ionic/react'
-import styleVars from 'styles/styleVars'
-import { com, flex } from 'styles'
-import RippleButton from './RippleButton'
-import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace'
+import { IonTitle } from '@ionic/react'
+import { Menu } from '@material-ui/core'
 import HomeIcon from '@material-ui/icons/Home'
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace'
 import MenuIcon from '@material-ui/icons/Menu'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import SearchIcon from '@material-ui/icons/Search'
-import { Menu } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
+import React, { CSSProperties, PropsWithChildren, useRef, useState } from 'react'
+import { com, flex } from 'styles'
+import styleVars from 'styles/styleVars'
+import RippleButton from './RippleButton'
 
 const Icons = {
   keyboardBackspace: KeyboardBackspaceIcon,

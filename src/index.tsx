@@ -12,6 +12,10 @@ window.clsx = clsx
 Plugins.StatusBar.setBackgroundColor({ color: styleVars.colors.dark })
 Plugins.StatusBar.setStyle({ style: StatusBarStyle.Dark })
 
+Plugins.App.addListener('backButton', () => {
+  Plugins.App.exitApp()
+})
+
 ReactDOM.render(<App />, document.getElementById('root'))
 
 // If you want your app to work offline and load faster, you can change
