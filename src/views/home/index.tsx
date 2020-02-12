@@ -4,6 +4,8 @@ import { Plugins, StatusBarStyle } from '@capacitor/core'
 import Header from 'components/Header'
 import FlexContainer from 'components/FlexContainer'
 import { flex } from 'styles'
+import ArticleView from 'components/articleView'
+
 
 export interface Props {
   
@@ -22,6 +24,8 @@ function Home(props: PropsWithChildren<FinalProps>) {
         leftIcon="menu"
         rightIcon="search"
       />
+      
+      <ArticleView title="Mainpage" />
     </FlexContainer>
   )
 }

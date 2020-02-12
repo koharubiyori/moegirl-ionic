@@ -16,7 +16,9 @@ import './theme/variables.css'
 import React from 'react'
 import { IonApp } from '@ionic/react'
 import Routes from './routes'
-import { StylesProvider, createGenerateClassName } from '@material-ui/styles'
+import { StylesProvider, createGenerateClassName, ThemeProvider } from '@material-ui/styles'
+import { createMuiTheme } from '@material-ui/core/styles'
+import styleVars from 'styles/styleVars'
 
 // 解决jss生成的class名重复问题
 const generateClassName = createGenerateClassName({
@@ -24,11 +26,25 @@ const generateClassName = createGenerateClassName({
   productionPrefix: 'c',
 })
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: styleVars.colors.primary,
+      dark: styleVars.colors.dark,
+      light: styleVars.colors.light,
+      contrastText: 'white'
+    }
+  }
+})
+
+
 function App() {
   return (
     <IonApp>
       <StylesProvider generateClassName={generateClassName}>
-        <Routes />
+        <ThemeProvider theme={theme}>
+          <Routes />
+        </ThemeProvider>
       </StylesProvider>
     </IonApp>
   )

@@ -14,8 +14,8 @@ export interface RequestOptions {
   method?: 'get' | 'post'
   baseURL?: string
   url?: string
-  params?: object
-  headers?: object
+  params?: { [key: string]: any }
+  headers?: { [key: string]: any }
 }
 
 const baseURL = isPlatform('hybrid') ? 'https://zh.moegirl.org/api.php' : 'api.php'
@@ -29,7 +29,7 @@ let requestor: any
 if (isPlatform('hybrid')) {
   requestor = (options: RequestOptions) => {
     let method = options.method || 'get'
-    let url = (options.baseURL || baseURL) + '/'
+    let url = (options.baseURL || baseURL) + (options.url ? '/' + options.url : '')
     let params = options.params || {}
     let requestHeaders = { 
       'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
@@ -38,6 +38,10 @@ if (isPlatform('hybrid')) {
     }
 
     return new Promise((resolve, reject) => {
+      for (let key in params) {
+        params[key] = params[key].toString()
+      }
+
       HTTP[method](url, params, requestHeaders)
         .then(data => resolve({ ...data, data: JSON.parse(data.data) }))
         .catch(reject)
