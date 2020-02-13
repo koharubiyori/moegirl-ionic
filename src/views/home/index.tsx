@@ -1,36 +1,40 @@
-import React, { useState, useEffect, useRef, PropsWithChildren } from 'react'
+import { IonButton } from '@ionic/react'
 import { makeStyles } from '@material-ui/styles'
-import { Plugins, StatusBarStyle } from '@capacitor/core'
-import Header from 'components/Header'
-import FlexContainer from 'components/FlexContainer'
-import { flex } from 'styles'
 import ArticleView from 'components/articleView'
-
+import FlexContainer from 'components/FlexContainer'
+import Header from 'components/Header'
+import keepAliveHOC from 'components/HOC/keepAliveHOC'
+import drawerRef from 'externalRefs/drawer'
+import React, { PropsWithChildren } from 'react'
+import { RouteComponentProps } from 'react-router'
+import useHomeStyles from 'styles/articleView/home'
 
 export interface Props {
   
 }
 
-type FinalProps = Props
+type FinalProps = Props & RouteComponentProps
 
 function Home(props: PropsWithChildren<FinalProps>) {
   const
-    classes = useStyles()
-  
+    classes = useStyles(),
+    homeClasses = useHomeStyles()
+
   return (
     <FlexContainer>
       <Header 
         title="萌娘百科" 
         leftIcon="menu"
         rightIcon="search"
+        onClickLeftIcon={() => drawerRef.get().open()}
       />
-      
-      <ArticleView title="Mainpage" />
+      <IonButton onClick={() => props.history.push('/article')}>123</IonButton>
+      <ArticleView title="Mainpage" bodyClassName={homeClasses.articleViewBody} />
     </FlexContainer>
   )
 }
 
-export default Home
+export default keepAliveHOC(Home)
 
 const useStyles = makeStyles({
   

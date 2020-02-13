@@ -6,13 +6,14 @@ import articleApi from 'api/article'
 import { ArticleApiData } from 'api/article.d'
 import React, { PropsWithChildren, useEffect, useState } from 'react'
 import styleVars from 'styles/styleVars'
-import 'styles/articleView/article'
+import useArticleStyles from 'styles/articleView/article'
 
 export interface Props {
   title: string
   style?: CSSProperties
   html?: string
   disabledLink?: boolean
+  bodyClassName?: string
 }
 
 type FinalProps = Props
@@ -20,6 +21,7 @@ type FinalProps = Props
 function ArticleView(props: PropsWithChildren<FinalProps>) {
   const
     classes = useStyles(),
+    articleClasses = useArticleStyles(),
     [articleData, setArticleData] = useState<ArticleApiData.GetContent>(),
     [articleDataStatus, setArticleDataStatus] = useState<0 | 1 | 2 | 3>(1)
 
@@ -53,7 +55,7 @@ function ArticleView(props: PropsWithChildren<FinalProps>) {
         2: () => <div className={classes.fixedMiddle}>
           <CircularProgress thickness={4.5} size={45} style={{ fill: styleVars.colors.primary }} />
         </div>,
-        3: () => <div className="articleViewBody" dangerouslySetInnerHTML={{ __html: articleData!.parse.text['*'] }} />
+        3: () => <div className={clsx(articleClasses.articleViewBody, props.bodyClassName)} dangerouslySetInnerHTML={{ __html: articleData!.parse.text['*'] }} />
       }[articleDataStatus]()}
     </div>
   )

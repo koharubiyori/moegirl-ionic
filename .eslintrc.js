@@ -47,7 +47,8 @@ module.exports = {
       'one-var': 0, // 禁止变量申明时用逗号一次申明多个
   
       'react/display-name': 0,   // 必须设置组件的displayName
-      'react/prop-types': 0   // 检查属性是否在props上存在，有误报的情况
+      'react/prop-types': 0,   // 检查属性是否在props上存在，有误报的情况
+      'react/no-children-prop': 0 // 禁止使用children props
     }
   }
   

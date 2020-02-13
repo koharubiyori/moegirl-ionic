@@ -5,6 +5,11 @@ createClasses('', {
   '@global': {
     '*': {
       outline: 'none'
+    },
+
+    // keep-alive容器
+    '.ka-wrapper, .ka-content': {
+      height: '100%'
     }
   }
 })

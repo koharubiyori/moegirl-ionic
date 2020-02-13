@@ -13,12 +13,13 @@ import '@ionic/react/css/text-transformation.css'
 import '@ionic/react/css/typography.css'
 /* Theme variables */
 import './theme/variables.css'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { IonApp } from '@ionic/react'
 import Routes from './routes'
 import { StylesProvider, createGenerateClassName, ThemeProvider } from '@material-ui/styles'
 import { createMuiTheme } from '@material-ui/core/styles'
 import styleVars from 'styles/styleVars'
+import { AliveScope } from 'react-activation'
 
 // 解决jss生成的class名重复问题
 const generateClassName = createGenerateClassName({
@@ -37,13 +38,14 @@ const theme = createMuiTheme({
   }
 })
 
-
-function App() {
+function App(props: any) {
   return (
     <IonApp>
       <StylesProvider generateClassName={generateClassName}>
         <ThemeProvider theme={theme}>
-          <Routes />
+          <AliveScope>
+            <Routes />
+          </AliveScope>
         </ThemeProvider>
       </StylesProvider>
     </IonApp>

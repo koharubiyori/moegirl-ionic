@@ -10,5 +10,9 @@ export default createClasses('com', {
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis'
+  },
+
+  fillHeight: {
+    height: '100%'
   }
 })
