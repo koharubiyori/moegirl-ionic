@@ -1,14 +1,26 @@
 import { Plugins } from '@capacitor/core'
 import { IonRouterOutlet, IonSplitPane } from '@ionic/react'
 import { IonReactRouter } from '@ionic/react-router'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, FC } from 'react'
 import { Route, Switch, useHistory, useLocation } from 'react-router-dom'
-import Article from 'views/article'
-import Drawer from 'views/drawer'
-import Home from 'views/home'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { transition } from 'styles'
+import Drawer from 'views/drawer'
+import Home, { RouteParams as HomeRP } from 'views/home'
+import Article, { RouteParams as ArticleRP } from 'views/article'
+import Search, { RouteParams as SearchRP } from 'views/search'
 
+export type RouteParamMaps = {
+  '/': HomeRP
+  '/article': ArticleRP
+  '/search': SearchRP
+}
+
+const routeConfig: { [Key in keyof RouteParamMaps]: FC<any> } = {
+  '/': Home,
+  '/article': Article,
+  '/search': Search
+}
 
 function RouteMaps() {
   const history = useHistory()
@@ -34,14 +46,13 @@ function RouteMaps() {
     })
   }, [])
 
-  const transitionName = transition[history.action === 'PUSH' ? 'horizontalPush' : 'horizontalPop']
+  const transitionName = transition[history.action === 'POP' ? 'horizontalPop' : 'horizontalPush']
   return (
     // 添加classNames必须使用这种形式，transitionGroup不识别动态的classNames属性。同时也不能在CSSTransition加classNames，在路由过渡时动画会出bug
     <TransitionGroup style={{ height: '100%' }} childFactory={child => React.cloneElement(child, { classNames: transitionName })}>
       <CSSTransition key={location.key} timeout={250}>
         <Switch location={location}>
-          <Route path="/article" component={Article} />
-          <Route path="/" component={Home} />
+          {Object.keys(routeConfig).map(path => React.createElement(Route, { path, exact: true, key: path, component: (routeConfig as any)[path] }))}
         </Switch>
       </CSSTransition>
     </TransitionGroup>

@@ -13,7 +13,11 @@ export interface Props {
   
 }
 
-type FinalProps = Props & RouteComponentProps
+export interface RouteParams {
+
+}
+
+type FinalProps = Props & __Router.Props
 
 function Home(props: PropsWithChildren<FinalProps>) {
   const
@@ -27,9 +31,9 @@ function Home(props: PropsWithChildren<FinalProps>) {
         leftIcon="menu"
         rightIcon="search"
         onClickLeftIcon={() => drawerRef.get().open()}
+        onClickRightIcon={() => props.history.push('/search')}
       />
-      <IonButton onClick={() => props.history.push('/article')}>123</IonButton>
-      <ArticleView title="Mainpage" bodyClassName={homeClasses.articleViewBody} />
+      <ArticleView title="Mainpage" history={props.history} bodyClassName={homeClasses.articleViewBody} />
     </FlexContainer>
   )
 }

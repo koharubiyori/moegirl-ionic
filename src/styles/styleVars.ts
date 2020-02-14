@@ -13,12 +13,14 @@ const colors = {
 export function createTransition(
   enter: CSSProperties, 
   active: CSSProperties, 
-  exit: CSSProperties
+  exit: CSSProperties,
+  enterDone?: CSSProperties
 ) {
   return {
     '&-enter, &-exit-active': enter,
     '&-enter-active, &-exit-active': active,
-    '&-enter-active': exit
+    '&-enter-active': exit,
+    ...(enterDone ? { '&-enter-done': enterDone } : {})
   }  
 }
 

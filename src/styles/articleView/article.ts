@@ -7,8 +7,9 @@ import { makeStyles } from '@material-ui/styles'
 export default makeStyles({
   articleViewBody: {
     padding: '0 5px',
+    overflowX: 'hidden',
     
-    '@global': {
+    '@global': {      
       // 消除移动端hoverPic中绝对定位带来的内容溢出问题
       '.PicHoverBox': {
         position: 'relative'

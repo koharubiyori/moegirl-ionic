@@ -992,6 +992,13 @@
   dependencies:
     "@types/cordova" latest
 
+"@ionic-native/dialogs@^5.21.5":
+  version "5.21.5"
+  resolved "https://registry.npm.taobao.org/@ionic-native/dialogs/download/@ionic-native/dialogs-5.21.5.tgz#17b08839a5291bcc6f2f01783d65b80c9ab017f1"
+  integrity sha1-F7CIOaUpG8xvLwF4PWW4DJqwF/E=
+  dependencies:
+    "@types/cordova" latest
+
 "@ionic-native/http@^5.21.2":
   version "5.21.2"
   resolved "https://registry.npm.taobao.org/@ionic-native/http/download/@ionic-native/http-5.21.2.tgz#eab0d6f4797d4236f9e71fb614c00c3fba7d79c6"
@@ -3222,6 +3229,11 @@ cordova-plugin-advanced-http@^2.4.0:
   version "2.4.0"
   resolved "https://registry.npm.taobao.org/cordova-plugin-advanced-http/download/cordova-plugin-advanced-http-2.4.0.tgz#e89730ad29c12c0af0a83ed9cacd1d169a0a678b"
   integrity sha1-6JcwrSnBLArwqD7Zys0dFpoKZ4s=
+
+cordova-plugin-dialogs@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.npm.taobao.org/cordova-plugin-dialogs/download/cordova-plugin-dialogs-2.0.2.tgz#ac3ce8b73bc885ff847078d5b533e7a4ed418a2f"
+  integrity sha1-rDzotzvIhf+EcHjVtTPnpO1Bii8=
 
 cordova-plugin-file@^6.0.2:
   version "6.0.2"

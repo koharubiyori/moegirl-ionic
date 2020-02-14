@@ -4,16 +4,21 @@ import { Button, CircularProgress } from '@material-ui/core'
 import { CSSProperties, makeStyles } from '@material-ui/styles'
 import articleApi from 'api/article'
 import { ArticleApiData } from 'api/article.d'
-import React, { PropsWithChildren, useEffect, useState } from 'react'
+import React, { PropsWithChildren, useEffect, useState, useRef, MutableRefObject } from 'react'
 import styleVars from 'styles/styleVars'
 import useArticleStyles from 'styles/articleView/article'
+import controlsAnimator from './controls'
 
 export interface Props {
-  title: string
+  title?: string
   style?: CSSProperties
   html?: string
   disabledLink?: boolean
   bodyClassName?: string
+  history: __Router.Props['history']
+  headerPlaceholder?: boolean
+  
+  onScroll?(event: any): void
 }
 
 type FinalProps = Props
@@ -23,11 +28,18 @@ function ArticleView(props: PropsWithChildren<FinalProps>) {
     classes = useStyles(),
     articleClasses = useArticleStyles(),
     [articleData, setArticleData] = useState<ArticleApiData.GetContent>(),
-    [articleDataStatus, setArticleDataStatus] = useState<0 | 1 | 2 | 3>(1)
+    [articleDataStatus, setArticleDataStatus] = useState<0 | 1 | 2 | 3>(1),
+    refs = {
+      articleViewBody: useRef<any>()
+    }
 
   useEffect(() => {
     loadArticleData()
   }, [])
+
+  useEffect(() => {
+    refs.articleViewBody.current && controlsAnimator(refs.articleViewBody.current, {}, props.history)
+  }, [articleDataStatus])
     
   function loadArticleData() {
     if (articleDataStatus === 2) { return }
@@ -44,9 +56,9 @@ function ArticleView(props: PropsWithChildren<FinalProps>) {
       })
   }
 
-
   return (
-    <div className={classes.container}>
+    <div className={classes.container} onScroll={props.onScroll}>
+      {props.headerPlaceholder ? <div style={{ height: 56 }} /> : null}
       {{
         0: () => <div className={classes.fixedMiddle}>
           <Button variant="contained" color="primary" onClick={() => loadArticleData()}>重新加载</Button>
@@ -55,7 +67,11 @@ function ArticleView(props: PropsWithChildren<FinalProps>) {
         2: () => <div className={classes.fixedMiddle}>
           <CircularProgress thickness={4.5} size={45} style={{ fill: styleVars.colors.primary }} />
         </div>,
-        3: () => <div className={clsx(articleClasses.articleViewBody, props.bodyClassName)} dangerouslySetInnerHTML={{ __html: articleData!.parse.text['*'] }} />
+        3: () => <div 
+          className={clsx(articleClasses.articleViewBody, props.bodyClassName)} 
+          dangerouslySetInnerHTML={{ __html: articleData!.parse.text['*'] }} 
+          ref={refs.articleViewBody}
+        />
       }[articleDataStatus]()}
     </div>
   )

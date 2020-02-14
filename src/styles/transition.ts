@@ -41,7 +41,8 @@ export default createClasses('transition', {
       bottom: 0,
       left: 0,
       right: 0,
-      transition: 'all 0.25s'
+      transition: 'transform 0.25s',
+      willChange: 'transform'
     },
 
     '&-exit': {
@@ -68,7 +69,8 @@ export default createClasses('transition', {
       bottom: 0,
       left: 0,
       right: 0,
-      transition: 'all 0.25s'
+      transition: 'transform 0.25s',
+      willChange: 'transform'
     },
 
     '&-exit': {

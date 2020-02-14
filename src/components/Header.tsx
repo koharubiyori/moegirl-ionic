@@ -98,7 +98,9 @@ const useStyles = makeStyles({
     color: 'white',
     boxShadow: '0 0 3px #666',
     height: 56,
-    alignItems: 'center'
+    alignItems: 'center',
+    position: 'relative',
+    zIndex: 1000000
   },
 
   rippleButton: {

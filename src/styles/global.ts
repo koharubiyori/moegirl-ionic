@@ -9,7 +9,7 @@ createClasses('', {
 
     // keep-alive容器
     '.ka-wrapper, .ka-content': {
-      height: '100%'
+      height: '100%',
     }
   }
 })

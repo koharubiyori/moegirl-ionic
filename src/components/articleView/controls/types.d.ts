@@ -1,0 +1,1 @@
+export type ControlAnimator = (el: HTMLDivElement, config: any, history: __Router.Props['history']) => void
